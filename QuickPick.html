@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title>Quick Pick|Comp20 HW5b</title>
+</head>
+<body>
+	<h1>Welcome to Lottery Quick Pick!</h1>
+</body>
+<script type="text/javascript">
+	//get 5 random numbers from 1 to 48
+	var RandNumA = Math.floor(Math.random() * 48) + 1;
+	var RandNumB = Math.floor(Math.random() * 48) + 1;
+	var RandNumC = Math.floor(Math.random() * 48) + 1;
+	var RandNumD = Math.floor(Math.random() * 48) + 1;
+	var RandNumE = Math.floor(Math.random() * 48) + 1;
+
+	// alert("SUGGESTED NUMS: " + RandNumA + " " + RandNumB + " " + RandNumC + " " + RandNumD + " " + RandNumE);
+
+	//1 random number from 1 to 18
+	var LuckyBall = Math.floor(Math.random() * 18) + 1;
+
+	// alert("SUGGESTED LUCKY BALL: " + LuckyBall);
+
+	//store first 5 nums in array
+	var ArrRandNums = [RandNumA, RandNumB, RandNumC, RandNumD, RandNumE];
+
+	//sort array
+	ArrRandNums.sort(function(a, b){return a-b});
+	
+	document.write("Quick Pick Suggested Numbers: ");
+	//display nums in array using loop
+	var i = 0;
+	for (i = 0; i < ArrRandNums.length; i++)
+	{
+		document.write(ArrRandNums[i] + " ");
+
+		//TESTING
+		// alert(ArrRandNums[i]);
+	}
+	document.write("<br>" + "Quick Pick Suggested Lucky Ball: " + LuckyBall + "<br>" + "<br>");
+
+	//Get today's first 5 winning numbers using single Javascript prompt
+	var input = prompt("Please enter today's first 5 winning numbers separated by commas: ");
+
+	//parse input string into array of numbers
+	var TodaysNums = Array.from(input.split(','),Number);
+
+	// ** TESTING **
+	// for (q = 0; q < ArrInput.length; q++)
+	// {
+	// 	alert("Today's winning numbers are: " + ArrInput[q]);
+	// }
+
+	//Get today's Lucky Ball using another prompt
+	var input2 = prompt("Please enter today's Lucky Ball number: ");
+
+	//parse input string into integer
+	var TodaysLuckyBall = parseInt(input2);
+
+	// ** TESTING **
+	// alert("Today's Lucky Ball Number is " + TodaysLuckyBall);
+
+	//display today's winning nums
+	document.write("Today's Winning Numbers: ");
+	var m = 0;
+	for (m = 0; m < TodaysNums.length; m++)
+	{
+		document.write(TodaysNums[m] + " ");
+	}
+	document.write("<br>" + "Today's Lucky Ball Number: " + TodaysLuckyBall + "<br>" + "<br>");
+
+	//let's check how many matches
+	var NumMatches = 0;
+	var x = 0;
+	for (x = 0; x < TodaysNums.length; x++)
+	{
+		if (ArrRandNums[x] == TodaysNums[x])
+		{
+			NumMatches++;
+		}
+	}
+
+	// alert("MATCHES FOUND: " + NumMatches);
+
+	//let's check if Lucky Ball matched
+	var LuckyMatch;
+	if (LuckyBall == TodaysLuckyBall)
+	{
+		document.write("Lucky Ball Matched! :)" + "<br>");
+		LuckyMatch = true;
+	}
+	else
+	{
+		document.write("No Lucky Ball Match :(" + "<br>");
+		LuckyMatch = false;
+	}
+
+	// alert("LUCKY BALL MATCH: " + LuckyMatch.toString());
+
+	//let's calculate prize $
+	var prizeAmount = 0;
+
+	if (NumMatches == 0 && LuckyMatch == false)
+	{
+		prizeAmount = 0;
+		document.write("Matches: " + NumMatches + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 0 && LuckyMatch == true)
+	{
+		prizeAmount = 4;
+		document.write("Matches: " + NumMatches + " + Lucky Ball" + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 1 && LuckyMatch == false)
+	{
+		prizeAmount = 0;
+		document.write("Matches: " + NumMatches + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 1 && LuckyMatch == true)
+	{
+		prizeAmount = 6;
+		document.write("Matches: " + NumMatches + " + Lucky Ball" + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 2 && LuckyMatch == false)
+	{
+		prizeAmount = 3;
+		document.write("Matches: " + NumMatches + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 2 && LuckyMatch == true)
+	{
+		prizeAmount = 25;
+		document.write("Matches: " + NumMatches + " + Lucky Ball" + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 3 && LuckyMatch == false)
+	{
+		prizeAmount = 20;
+		document.write("Matches: " + NumMatches + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 3 && LuckyMatch == true)
+	{
+		prizeAmount = 150;
+		document.write("Matches: " + NumMatches + " + Lucky Ball" + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 4 && LuckyMatch == false)
+	{
+		prizeAmount = 200;
+		document.write("Matches: " + NumMatches + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 4 && LuckyMatch == true)
+	{
+		prizeAmount = 5000;
+		document.write("Matches: " + NumMatches + " + Lucky Ball" + "<br>");
+		document.write("Total winnings: $" + prizeAmount);
+	}
+	else if (NumMatches == 5 && LuckyMatch == false)
+	{
+		prizeAmount = 25000;
+		document.write("Matches: " + NumMatches + "<br>");
+		document.write("Total winnings: $" + prizeAmount + " a YEAR for LIFE!");
+	}
+	else if (NumMatches == 5 && LuckyMatch == true)
+	{
+		prizeAmount = 7000;
+		document.write("Matches: " + NumMatches + " + Lucky Ball" + "<br>");
+		document.write("Total winnings: $" + prizeAmount + " a WEEK for LIFE!");
+	}
+	else
+	{
+		document.write("ERROR");
+	}
+
+</script>
+</html>
